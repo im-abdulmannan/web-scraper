@@ -1,6 +1,7 @@
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import express from "express";
+import cors from "cors";
 import { connectDb } from "./db.js";
 import route from "./routes/data.route.js";
 import ErrorHandler from "./utils/ErrorHandler.js";
@@ -9,7 +10,9 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
-
+app.use(cors({
+  origin: "http://localhost:3000"
+}));
 app.use("/api", route);
 
 // Connect to MongoDB
