@@ -23,3 +23,12 @@ export const webScraper = async (req, res) => {
     }
   }
 };
+
+export const getAllData = async (req, res) => {
+  try {
+    const data = await ScrapedData.find();
+    return res.status(200).json(data);
+  } catch (error) {
+    return res.status(500).json({ message: "Error fetching data" });
+  }
+};
